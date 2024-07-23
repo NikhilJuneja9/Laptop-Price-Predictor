@@ -4,10 +4,16 @@ import numpy as np
 import os
 
 # import the model
-pipe_path = os.path.join(os.path.dirname(__file__),  'pipe.pkl')
-df_path = os.path.join(os.path.dirname(__file__),  'df.pkl')
-pipe = pickle.load(open(pipe_path,'rb'))
-df = pickle.load(open(df_path,'rb'))
+base_dir = os.path.abspath(os.path.dirname(__file__))
+pipe_path = os.path.join(base_dir, 'pipe.pkl')
+df_path = os.path.join(base_dir, 'df.pkl')
+
+try:
+    pipe = pickle.load(open(pipe_path,'rb'))
+    df = pickle.load(open(df_path,'rb'))
+except Exception as e:
+    print(e)
+
 
 st.title("Laptop Predictor")
 
